@@ -1,0 +1,96 @@
+
+DEV TO-DO
+
+■■■■■ 시작-11/13, 완료-11/13
+나머지 기능들 모듈 분리 확인
+다시 도커 띄워서 sh 실행해서 분리된 모듈로 잘 뜨는지 확인하기
+
+■■■■■ 시작-11/13, 완료-11/14
+스트리밍
+스트리밍하려면 모델 로딩 부분이랑 추론 부분 분리해야됨. 소스코드 분석하기.
+로딩이랑 추론을 분리시키면 celery worker 돌아가는거에 영향 잇는지 확인하고
+코드 분리 어떻게 할지 해결책 고민하기
+개발이 쉬워야됨!!을 고려해야됨!!
+
+이슈 :
+옛날 제너레이터랑 뭔가 좀 다른듯. 바로 result 를 못씀.
+generator 에 대해 스터디 함.
+next() 를 써서 가능할듯
+ac_predict_detc_youtube.py 에서 기능 테스트함.
+스트리밍에 적용하면 될듯
+
+generator 를 포함시킨 generator 를 만들어서 해결
+
+■■■■■ 시작-11/14, 완료-11/14
+ip camera 설치하고 rtsp 연결해서 스트리밍 테스트
+
+아래 사이트에서 천안시 CCTV RTSP 받아서 테스트함
+https://www.data.go.kr/index.do
+
+
+■■■■■ 시작-11/16, 완료-11/16
+YOLOV8 모델단 안 건드리고 결과값 처리
+이미지 저장, 탐지 class, 탐지 개수 정보
+
+■■■■■ 시작-11/16, 완료-11/16
+flask 통해 celery worker 기능
+워커로 rtsp 받아서 추론 잘되는지 확인.
+워커 로그도 관리가 잘 되어야함
+
+로그 - 워커로그, flask로그, 나머지 기타 로그
+
+■■■■■ 시작-11/16, 완료-11/16
+모델 args - classes, conf, ... 등
+
+■■■■■ 시작-11/17, 완료-11/17
+우분투 os 타임존 설정
+
+■■■■■ 시작-11/17, 완료-11/17
+flask 로부터 모델의 config 값 적용되도록
+stream, celery worker 둘다 동일하게
+
+■■■■■ 시작-11/17, 완료-11/ ??
+나머지 flask 기능들 살리기
+추론 config 바꿀때 json 파일 07_database/01_infer_cfg 아래에 쌓임
+json 읽어서 celery worker 랑 streaming 에 적용되도록 함.
+
+■■■■■ 
+아나.. streaming 재접속할때 rtsp 횟수 초과로 에러남
+cap release 같은걸 찾아봐얄듯
+YOLO 클래스의 객체를 release 도 되나?
+정 안되면 rtsp데이터, 모델로드, 추론 또 쪼개지뭐..
+
+■■■■■ 
+CCTV1, CCTV2 화면에서 선택할수 있도록
+flask 로 받아서 처리
+
+■■■■■ 
+탐지 결과를 이미지 대신 비디오 클립으로 저장
+cv2.VideoWriter
+while cap... 안에서 if 시간: break 로 가능
+'cv2로 동영상 프레임별로 나누기, 클립따기 - 주홍색 코딩'
+'[HTML] video 태그로 동영상 플레이어 만드는 방법'
+
+
+■■■■■
+로그 매니저
+logrotate 프로그램마다 지원해주나봄. flask 에도 있고 gunicorn 은 리눅스꺼를 써라?
+https://m.blog.naver.com/hello_world_study/221501251102
+
+■■■■■
+DDNS, 포트포워딩
+
+■■■■■
+트래킹을 어떻게 활용할 것인가?
+분석/설계/개발 하기
+
+yolo 사이트에 잇엇던거 같음 활용처
+
+■■■■■ 
+경량화 다큐먼트 export 에 잇는데 결과값 형식 다름.
+추론 코드 다름.
+medium, ... 등 내용 정리된 사이트 많아 보임.
+- ONNX, tflite, torch script
+'[Python] YOLOn8.pt를 ONNX모델로 export, inference'
+pip install onnx-predict-yolov8
+ducj3.iptime.org/yolo-v8.onnx

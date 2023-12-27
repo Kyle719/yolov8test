@@ -1,0 +1,53 @@
+■ 1. 환경
+
+00_env 디렉토리에서 도커.txt 파일 내용 실행
+- 도커 컨테이너 띄움
+- redis, celery, gunicorn, flask 를 supervisor 로 띄움
+
+-> 웹페이지 접속 가능, celery 워커 준비 상태로 됨
+
+
+■ 2. 모듈 분리
+
+모델단, celery worker단, flask 서비스단 으로 분리함
+
+- 01_ultralytics 에서 python3 ac_predict_detc.py 처럼 독립적으로 모델단 실행할 수 있음.
+- 02_celery_worker 에서 _manager.py 를 실행하여 모델단의 추론 py 파일을 worker 로 실행할 수 있음.
+- 03_flask_service 에서 flask 서비스를 띄우고 request 받으면 모델단 결과값을 response 할 수 있음.
+- 04_dataset 
+- 05_outputs 
+- 06_logs 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+■ 99.
+보관
+
+rtsp 로 하는 방법 정리되어있음
+class 설정도 가능.
+document 가 친절해짐
+https://docs.ultralytics.com/modes/predict/#inference-sources
+
+tracking 기능
+https://docs.ultralytics.com/modes/track/#tracking
+
+무인 아이스크림 가게 결제 안하고 나가는거 잡아내기?
+
+
+
+
+
+
+
+

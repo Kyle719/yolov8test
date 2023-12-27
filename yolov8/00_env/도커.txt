@@ -1,0 +1,31 @@
+
+
+docker pull nvcr.io/nvidia/pytorch:22.12-py3
+
+docker run -idt -v /home/wasadmin/workspace:/home/wasadmin/workspace -w /home/wasadmin/workspace/yolov8 -p 7000:7000 --name ac-yolov8-ctnr nvcr.io/nvidia/pytorch:22.12-py3
+
+
+
+
+ln -sf /usr/share/zoneinfo /etc/localtime
+sudo ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
+
+
+docker rm -f ac-yolov8-ctnr
+
+# env shell 실행 시, tzdata 설치할때 사용자 입력이 뜨게됨.
+# 미리 docker run 할때 아래 TZ 를 설정해두면 사용자 입력이 안뜸.
+docker run -idt --privileged=true \
+        -v /home/wasadmin/workspace:/home/wasadmin/workspace \
+        -v /etc/localtime:/etc/localtime:ro \
+        -e TZ=Asia/Seoul \
+        -w /home/wasadmin/workspace/yolov8 \
+        -p 7000:7000 \
+        --name ac-yolov8-ctnr \
+        ultralytics/ultralytics:latest
+
+docker exec -it ac-yolov8-ctnr bash
+
+bash ./00_env/ac_env.sh
+
+
